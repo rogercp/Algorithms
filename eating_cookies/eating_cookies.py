@@ -6,15 +6,22 @@ import sys
 # a solution that is more efficient than the naive 
 # recursive solution
 
+memcache={}
 
-def eating_cookies(n, cache=None):
+def eating_cookies(n, memcache=None):
+	if n in memcache:
+		return memcache[n]
 	if n < 0:
-		return 0
-	elif n == 0:
+		return -1
+	if n <= 1:
 		return 1
-	else:
-  		result = eating_cookies(n-3)+eating_cookies(n-2)+eating_cookies(n-1)
-  		return result
+	if n == 2:
+		return 2
+	result = int(eating_cookies(n-1, memcache) + eating_cookies(n-2, memcache) + eating_cookies(n-3, memcache)) 
+	memcache[n] = result
+	return result
+
+
 
 
 

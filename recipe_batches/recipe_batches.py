@@ -3,27 +3,28 @@
 import math
 
 
-recipe = { 'milk': 100, 'butter': 50, 'flour': 5 }
-ingredients = { 'milk': 131, 'butter': 48, 'flour': 3 }
+
+# recipe = { 'milk': 2, 'sugar': 40, 'butter': 20}
+# ingredients = {'milk': 5, 'sugar': 120, 'butter': 500}
+
 
 def recipe_batches(recipe, ingredients):
 	batches = None
 	if(recipe.keys() != ingredients.keys()):
 		return 0
 	else:
-		for i in recipe.items():
-			for j in ingredients.items():
-				if(j[1] < i[1]):
-					return 0
-				else:
-					result = j[1] / i[1]
-					if batches == None or result < batches:
-						batches = result
+		for (j), (r) in zip(ingredients.items(), recipe.items()):
+			divide = j[1] // r[1]
+			if j[1] < r[1]: 
+				return 0 
+			else:
+				if batches == None or divide < batches:  
+					batches = divide
 	
-	return int(batches)
+	return batches
 
 
-recipe_batches(recipe,ingredients)
+# recipe_batches(recipe,ingredients)
 
 if __name__ == '__main__':
   # Change the entries of these dictionaries to test 
@@ -31,3 +32,12 @@ if __name__ == '__main__':
   recipe = { 'milk': 100, 'butter': 50, 'flour': 5 }
   ingredients = { 'milk': 132, 'butter': 48, 'flour': 51 }
   print("{batches} batches can be made from the available ingredients: {ingredients}.".format(batches=recipe_batches(recipe, ingredients), ingredients=ingredients))
+
+
+
+
+
+
+
+
+
